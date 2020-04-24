@@ -26,12 +26,16 @@ trait Has_Dependencies {
 
 	/**
 	 * Check if the plugin meets all dependencies.
+	 *
+	 * @return bool
 	 */
-	public static function has_dependencies() {
+	public static function has_dependencies(): bool {
 		try {
-			Dependency_Check::has_dependencies( static::$dependencies );
+			return Dependency_Check::has_dependencies( static::$dependencies );
 		} catch ( Missing_Dependencies_Exception $error ) {
 			static::add_missing_dependencies_notice( $error );
+
+			return false;
 		}
 	}
 
