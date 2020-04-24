@@ -1,6 +1,6 @@
 <?php
 
-namespace BernskioldMedia\WP\Traits\WP_Dependency_Checker;
+namespace BernskioldMedia\WP\WP_Dependency_Checker\Traits;
 
 use BernskioldMedia\WP\WP_Dependency_Checker\Admin\Missing_Dependency_Notice;
 use BernskioldMedia\WP\WP_Dependency_Checker\Dependency_Check;
