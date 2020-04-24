@@ -30,12 +30,18 @@ class Missing_Dependency_Notice {
 	private $missing_plugins_string;
 
 	/**
+	 * @var string
+	 */
+	private $plugin_name;
+
+	/**
 	 * Missing_Dependency_Notice constructor.
 	 *
 	 * @param  array  $missing_dependencies_names
 	 */
-	public function __construct( $missing_dependencies_names ) {
+	public function __construct( $plugin_name, $missing_dependencies_names ) {
 		$this->missing_dependencies_names = $missing_dependencies_names;
+		$this->plugin_name                = $plugin_name;
 		$this->create_missing_plugins_string();
 	}
 
@@ -82,8 +88,7 @@ class Missing_Dependency_Notice {
 	}
 
 	/**
-	 * Get the error message. Include %s for a comma separated
-	 * list of plugins that are not active.
+	 * Get the error message.
 	 *
 	 * @return string
 	 */
@@ -93,7 +98,7 @@ class Missing_Dependency_Notice {
 			return $this->message;
 		}
 
-		return wp_kses( '<p><strong>Dependencies Missing:</strong>The <em>BM People</em> plugin cannot run because the following required plugins are not active:</p><ul>%s</ul><p>Please activate them.</p>',
+		return wp_kses( '<p><strong>Dependencies Missing:</strong>The <em>%1$s</em> plugin cannot run because the following required plugins are not active:</p><ul>%2$s</ul><p>Please activate them.</p>',
 			[
 				'p'      => [],
 				'strong' => [],
@@ -114,7 +119,7 @@ class Missing_Dependency_Notice {
 
 		?>
 		<div class="notice notice-error is-dismissible">
-			<?php printf( $this->get_message(), $this->get_missing_plugins_string() ); ?>
+			<?php printf( $this->get_message(), $this->plugin_name, $this->get_missing_plugins_string() ); ?>
 		</div>
 		<?php
 

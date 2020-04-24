@@ -5,6 +5,7 @@ namespace BernskioldMedia\WP\WP_Dependency_Checker\Traits;
 use BernskioldMedia\WP\WP_Dependency_Checker\Admin\Missing_Dependency_Notice;
 use BernskioldMedia\WP\WP_Dependency_Checker\Dependency_Check;
 use BernskioldMedia\WP\WP_Dependency_Checker\Exceptions\Missing_Dependencies_Exception;
+use ReflectionClass;
 
 /**
  * Trait Has_Dependencies
@@ -38,8 +39,25 @@ trait Has_Dependencies {
 	 * @param  Missing_Dependencies_Exception  $e
 	 */
 	protected static function add_missing_dependencies_notice( Missing_Dependencies_Exception $e ) {
-		$notice = new Missing_Dependency_Notice( $e->get_names() );
+		$notice = new Missing_Dependency_Notice( static::get_dependency_plugin_name(), $e->get_names() );
 		$notice->init();
+	}
+
+	/**
+	 * Get the current plugin name.
+	 *
+	 * @return string
+	 */
+	private static function get_dependency_plugin_name(): string {
+
+		if ( ! function_exists( 'get_plugin_data' ) ) {
+			return '';
+		}
+
+		$class = new ReflectionClass( static::class );
+		$data  = get_plugin_data( $class->getFileName() );
+
+		return $data['Name'] ?? '';
 	}
 
 }
