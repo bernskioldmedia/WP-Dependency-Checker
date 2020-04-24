@@ -18,13 +18,6 @@ use BernskioldMedia\WP\WP_Dependency_Checker\Exceptions\Missing_Dependencies_Exc
 trait Has_Dependencies {
 
 	/**
-	 * A list of all dependencies.
-	 *
-	 * @var array
-	 */
-	protected static $dependencies = [];
-
-	/**
 	 * Check if the plugin meets all dependencies.
 	 *
 	 * @return bool
