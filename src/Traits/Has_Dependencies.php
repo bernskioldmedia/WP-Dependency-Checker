@@ -25,7 +25,9 @@ trait Has_Dependencies {
 	 */
 	public static function has_dependencies(): bool {
 		try {
-			return Dependency_Check::has_dependencies( static::$dependencies );
+			Dependency_Check::has_dependencies( static::$dependencies );
+
+			return true;
 		} catch ( Missing_Dependencies_Exception $error ) {
 			static::add_missing_dependencies_notice( $error );
 

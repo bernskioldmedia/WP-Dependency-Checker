@@ -19,7 +19,7 @@ class Dependency_Check {
 	 * @return bool
 	 * @throws Missing_Dependencies_Exception
 	 */
-	public static function has_dependencies( $dependencies ): bool {
+	public static function has_dependencies( $dependencies ) {
 		$missing_dependencies = static::get_missing_dependencies( $dependencies );
 
 		if ( ! empty( $missing_dependencies ) ) {
