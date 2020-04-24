@@ -22,8 +22,8 @@ class Missing_Dependencies_Exception extends \Exception {
 	 * @param  array  $missing_dependencies
 	 */
 	public function __construct( $missing_dependencies ) {
-		parent::__construct();
 		$this->missing_dependencies = $missing_dependencies;
+		parent::__construct( 'Not all dependencies were loaded. Missing: ' . $this->get_names() );
 	}
 
 	/**
@@ -32,15 +32,6 @@ class Missing_Dependencies_Exception extends \Exception {
 	 * @return array
 	 */
 	public function get_names(): array {
-		return array_keys( $this->missing_dependencies );
-	}
-
-	/**
-	 * Get a list of missing dependency files.
-	 *
-	 * @return array
-	 */
-	public function get_files(): array {
 		return array_values( $this->missing_dependencies );
 	}
 
