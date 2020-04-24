@@ -17,7 +17,9 @@
 	  "email": "erik@bernskioldmedia.com"
 	}
   ],
-  "require": {},
+  "require": {
+	"php": "^7.1"
+  },
   "autoload": {
 	"psr-4": {
 	  "BernskioldMedia\\WP\\WP_Dependency_Checker\\": "src/"
