@@ -66,7 +66,7 @@ class Missing_Dependency_Notice {
 		$plugins_list = [];
 
 		foreach ( $this->missing_dependencies_names as $name ) {
-			$plugins_list[] = '<strong>' . $name . '</strong>';
+			$plugins_list[] = '<li>' . $name . '</li>';
 		}
 
 		$this->missing_plugins_string = implode( ', ', $plugins_list );
@@ -88,14 +88,18 @@ class Missing_Dependency_Notice {
 	 * @return string
 	 */
 	public function get_message() {
+
 		if ( $this->message ) {
 			return $this->message;
 		}
 
-		return wp_kses( '<strong>Dependencies Missing:</strong> The <em>BM People</em> plugin cannot run because the following required plugins are not active: %s. Please activate them.',
+		return wp_kses( '<p><strong>Dependencies Missing:</strong>The <em>BM People</em> plugin cannot run because the following required plugins are not active:</p><ul>%s</ul><p>Please activate them.</p>',
 			[
+				'p'      => [],
 				'strong' => [],
 				'em'     => [],
+				'ul'     => [],
+				'li'     => [],
 			] );
 	}
 
@@ -104,13 +108,13 @@ class Missing_Dependency_Notice {
 	 */
 	public function render() {
 
-		if ( $this->can_see_notice() ) {
+		if ( ! $this->can_see_notice() ) {
 			return;
 		}
 
 		?>
-		<div class="notice notice-error is-dismissable">
-			<p><?php printf( $this->get_message(), $this->get_missing_plugins_string() ); ?></p>
+		<div class="notice notice-error is-dismissible">
+			<?php printf( $this->get_message(), $this->get_missing_plugins_string() ); ?>
 		</div>
 		<?php
 
@@ -131,7 +135,7 @@ class Missing_Dependency_Notice {
 	 * @return string
 	 */
 	public function get_capability(): string {
-		return add_filter( 'dependency_notice_capability', self::CAPABILITY );
+		return apply_filters( 'dependency_notice_capability', self::CAPABILITY );
 	}
 
 }
