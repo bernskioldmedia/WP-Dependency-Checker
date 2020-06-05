@@ -74,7 +74,7 @@ class Dependency_Check {
 	 * @return bool
 	 */
 	public static function is_plugin_active( $plugin_file_path ): bool {
-		return in_array( $plugin_file_path, static::get_active_plugins(), true );
+		return in_array( $plugin_file_path, static::get_active_plugins(), true ) || is_plugin_active_for_network( $plugin_file_path );
 	}
 
 	/**
