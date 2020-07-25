@@ -4,6 +4,11 @@ namespace BernskioldMedia\WP\WP_Dependency_Checker;
 
 use BernskioldMedia\WP\WP_Dependency_Checker\Exceptions\Missing_Dependencies_Exception;
 
+// Makes sure the plugin is defined before trying to use it
+if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
+    require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+}
+
 /**
  * Class Dependency_Check
  *
