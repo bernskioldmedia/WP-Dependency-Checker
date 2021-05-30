@@ -2,27 +2,27 @@
   "name": "bernskioldmedia/wp-dependency-checker",
   "description": "A modern way of checking for other plugin dependencies for your WordPress plugin.",
   "keywords": [
-	"wordpress"
+    "wordpress"
   ],
   "homepage": "https://bernskioldmedia.com",
   "type": "library",
   "license": "MIT",
   "authors": [
-	{
-	  "name": "Bernskiold Media",
-	  "email": "info@bernskioldmedia.com"
-	},
-	{
-	  "name": "Erik Bernskiold",
-	  "email": "erik@bernskioldmedia.com"
-	}
+    {
+      "name": "Bernskiold Media",
+      "email": "info@bernskioldmedia.com"
+    },
+    {
+      "name": "Erik Bernskiold",
+      "email": "erik@bernskioldmedia.com"
+    }
   ],
   "require": {
-	"php": "^7.1"
+    "php": "^7.1|^8.0"
   },
   "autoload": {
-	"psr-4": {
-	  "BernskioldMedia\\WP\\WP_Dependency_Checker\\": "src/"
-	}
+    "psr-4": {
+      "BernskioldMedia\\WP\\WP_Dependency_Checker\\": "src/"
+    }
   }
 }
